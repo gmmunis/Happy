@@ -1,11 +1,11 @@
-// import React, { useEffect, useState } from "react";
+import React from "react";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 // import { useParams } from "react-router-dom";
 
 import "../styles/pages/orphanage.css";
 
-// import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 // import mapIcon from "../utils/mapIcon";
 // import api from "../services/api";
 
@@ -44,7 +44,7 @@ export default function Orphanage() {
 
   return (
     <div id="page-orphanage">
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       <main>
         <div className="orphanage-details">

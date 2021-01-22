@@ -6,7 +6,7 @@ import { FiPlus } from "react-icons/fi";
 
 import "../styles/pages/create-orphanage.css";
 
-// import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 // import mapIcon from "../utils/mapIcon";
 // import api from "../services/api";
 
@@ -70,7 +70,7 @@ export default function CreateOrphanage() {
 
   return (
     <div id="page-create-orphanage">
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       <main>
         <form onSubmit={handleSubmit} className="create-orphanage-form">
