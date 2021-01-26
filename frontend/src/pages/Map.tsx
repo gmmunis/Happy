@@ -1,13 +1,30 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import mapMarkerImg from '../images/logo.svg';
 import mapIcon from '../utils/mapIcon';
+import api from '../services/api';
 
 import '../styles/pages/map.css';
 
+interface Orphanage {
+  id: number;
+  latitude: number;
+  longitude: number;
+  name: string;
+}
+
 function Map() {
+  const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+
+  useEffect(() => {
+    api.get('orphanages').then(response => {
+      setOrphanages(response.data);
+    });
+  }, []);
+
   return (
     <div id="page-map">
       <aside>
@@ -32,17 +49,22 @@ function Map() {
         <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {/* <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?acces_token=${process.env.REACT_APP_MAPBOX_TOKEN}`} /> */}
 
-        <Marker
-          icon={mapIcon}
-          position={[-23.6307621, -46.6802013]}
-        >
-          <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
-            Lar das meninas
-            <Link to="/orphanage/1">
-              <FiArrowRight size={20} color="#FFF" />
-            </Link>
-          </Popup>
-        </Marker>
+        {orphanages.map(orphanage => {
+          return (
+            <Marker
+              icon={mapIcon}
+              position={[orphanage.latitude, orphanage.longitude]}
+              key={orphanage.id}
+            >
+              <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
+                {orphanage.name}
+            <Link to={`/orphanages/${orphanage.id}`}>
+                  <FiArrowRight size={20} color="#FFF" />
+                </Link>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       <Link to="/orphanages/create" className="create-orphanage">

@@ -1,13 +1,15 @@
 import React from "react";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "../styles/pages/orphanage.css";
 
 import Sidebar from "../components/Sidebar";
-// import mapIcon from "../utils/mapIcon";
-// import api from "../services/api";
+import mapIcon from "../utils/mapIcon";
+import { useState } from "react";
+import { useEffect } from "react";
+import api from "../services/api";
 
 interface Orphanage {
   name: string;
@@ -28,19 +30,19 @@ interface OrphanageParams {
 }
 
 export default function Orphanage() {
-  // const params = useParams<OrphanageParams>();
-  // const [orphanage, setOrphanage] = useState<Orphanage>();
-  // const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const params = useParams<OrphanageParams>();
+  const [orphanage, setOrphanage] = useState<Orphanage>();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  // useEffect(() => {
-  //   api.get(`/orphanages/${params.id}`).then(({ data }) => {
-  //     setOrphanage(data);
-  //   });
-  // }, [params.id]);
+  useEffect(() => {
+    api.get(`/orphanages/${params.id}`).then(({ data }) => {
+      setOrphanage(data);
+    });
+  }, [params.id]);
 
-  // if (!orphanage) {
-  //   return <p>Carregando ...</p>;
-  // }
+  if (!orphanage) {
+    return <p>Carregando ...</p>;
+  }
 
   return (
     <div id="page-orphanage">
@@ -48,12 +50,12 @@ export default function Orphanage() {
 
       <main>
         <div className="orphanage-details">
-          {/* <img
+          <img
             src={orphanage.images[activeImageIndex].url}
             alt={orphanage.name}
-          /> */}
+          />
 
-          {/* <div className="images">
+          <div className="images">
             {orphanage.images.map((image, index) => {
               return (
                 <button
@@ -68,11 +70,11 @@ export default function Orphanage() {
                 </button>
               );
             })}
-          </div> */}
+          </div>
 
           <div className="orphanage-details-content">
-            {/* <h1>{orphanage.name}</h1>
-            <p>{orphanage.about}</p> */}
+            <h1>{orphanage.name}</h1>
+            <p>{orphanage.about}</p>
 
             <div className="map-container">
               <MapContainer
@@ -86,18 +88,18 @@ export default function Orphanage() {
                 doubleClickZoom={false}
               >
                 <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                {/* <Marker
+                <Marker
                   interactive={false}
                   icon={mapIcon}
                   position={[orphanage.latitude, orphanage.longitude]}
-                /> */}
+                />
               </MapContainer>
 
               <footer>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  // href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}
                 >
                   Ver rotas no Google Maps
                 </a>
@@ -107,9 +109,9 @@ export default function Orphanage() {
             <hr />
 
             <h2>Instruções para visita</h2>
-            {/* <p>{orphanage.instructions}</p> */}
+            <p>{orphanage.instructions}</p>
 
-            {/* <div className="open-details">
+            <div className="open-details">
               <div className="hour">
                 <FiClock size={32} color="#15B6D6" />
                 Segunda à Sexta <br />
@@ -128,12 +130,12 @@ export default function Orphanage() {
                   fim de semana
                 </div>
               )}
-            </div> */}
+            </div>
 
-            {/* <button type="button" className="contact-button">
+            <button type="button" className="contact-button">
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
-            </button> */}
+            </button>
           </div>
         </div>
       </main>

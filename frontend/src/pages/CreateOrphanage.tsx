@@ -7,13 +7,13 @@ import { FiPlus } from "react-icons/fi";
 import "../styles/pages/create-orphanage.css";
 
 import Sidebar from "../components/Sidebar";
-// import mapIcon from "../utils/mapIcon";
-// import api from "../services/api";
+import mapIcon from "../utils/mapIcon";
+import api from "../services/api";
 
 export default function CreateOrphanage() {
   const history = useHistory();
 
-  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const [position] = useState({ latitude: 0, longitude: 0 });
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -61,7 +61,7 @@ export default function CreateOrphanage() {
       data.append("images", image);
     });
 
-    // await api.post("/orphanages", data);
+    await api.post("/orphanages", data);
 
     alert("Cadastro realizado com sucesso!");
 
@@ -77,7 +77,7 @@ export default function CreateOrphanage() {
           <fieldset>
             <legend>Dados</legend>
 
-            {/* <MapContainer
+            <MapContainer
               center={[-23.5077632, -46.2979072]}
               style={{ width: "100%", height: 280 }}
               zoom={15}
@@ -92,7 +92,7 @@ export default function CreateOrphanage() {
                   position={[position.latitude, position.longitude]}
                 />
               )}
-            </MapContainer> */}
+            </MapContainer>
 
             <div className="input-block">
               <label htmlFor="name">Nome</label>
