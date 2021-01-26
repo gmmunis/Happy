@@ -5,7 +5,6 @@ import logoImg from '../images/logo.svg';
 
 import '../styles/components/sidebar.css';
 
-
 export default function Sidebar() {
   const { goBack } = useHistory();
   return (

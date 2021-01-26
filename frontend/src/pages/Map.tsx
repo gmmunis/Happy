@@ -1,23 +1,11 @@
-
-import mapMarkerImg from '../images/logo.svg';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import Leaflet from 'leaflet';
 
-import 'leaflet/dist/leaflet.css';
-
-import logoImg from '../images/logo.svg';
+import mapMarkerImg from '../images/logo.svg';
+import mapIcon from '../utils/mapIcon';
 
 import '../styles/pages/map.css';
-
-const mapIcon = Leaflet.icon({
-  iconUrl: logoImg,
-
-  iconSize: [58, 68],
-  iconAnchor: [29, 68],
-  popupAnchor: [170, 2],
-});
 
 function Map() {
   return (
