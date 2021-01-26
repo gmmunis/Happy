@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useHistory } from "react-router-dom";
-import { LeafletMouseEvent } from "leaflet";
+// import { LeafletMouseEvent } from "leaflet";
 import { FiPlus } from "react-icons/fi";
 
 import "../styles/pages/create-orphanage.css";
@@ -22,11 +22,11 @@ export default function CreateOrphanage() {
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
-  const handleMapClick = (event: LeafletMouseEvent) => {
-    const { lat, lng } = event.latlng;
+  // const handleMapClick = (event: LeafletMouseEvent) => {
+  //   const { lat, lng } = event.latlng;
 
-    setPosition({ latitude: lat, longitude: lng });
-  };
+  //   setPosition({ latitude: lat, longitude: lng });
+  // };
 
   const handleSelectImages = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
@@ -81,7 +81,7 @@ export default function CreateOrphanage() {
               center={[-23.5077632, -46.2979072]}
               style={{ width: "100%", height: 280 }}
               zoom={15}
-            onClick={handleMapClick}
+            // onClick={handleMapClick}
             >
               <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

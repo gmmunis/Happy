@@ -78,7 +78,7 @@ export default function Orphanage() {
 
             <div className="map-container">
               <MapContainer
-                // center={[orphanage.latitude, orphanage.longitude]}
+                center={[orphanage.latitude, orphanage.longitude]}
                 zoom={16}
                 style={{ width: "100%", height: 280 }}
                 dragging={false}
@@ -132,10 +132,10 @@ export default function Orphanage() {
               )}
             </div>
 
-            <button type="button" className="contact-button">
+            {/* <button type="button" className="contact-button">
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
-            </button>
+            </button> */}
           </div>
         </div>
       </main>
